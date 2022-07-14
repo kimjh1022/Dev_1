@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    tools:context=".MainActivity"
+    android:background="#E9F4E3"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_open"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="@drawable/ic_baseline_menu_24"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Kim_Dev"
+                android:textSize="20sp"
+                android:gravity="center"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:background="@drawable/logout"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout = "@layout/activity_navigation_menu"/>
+</androidx.drawerlayout.widget.DrawerLayout>
