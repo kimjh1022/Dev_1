@@ -1,4 +1,4 @@
-package com.example.kim_dev;
+package com.example.kim_dev.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kim_dev.MainActivity;
+import com.example.kim_dev.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

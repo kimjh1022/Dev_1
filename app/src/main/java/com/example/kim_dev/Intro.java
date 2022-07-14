@@ -1,12 +1,13 @@
 package com.example.kim_dev;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.kim_dev.Login.Login;
 
 public class Intro extends AppCompatActivity {
 

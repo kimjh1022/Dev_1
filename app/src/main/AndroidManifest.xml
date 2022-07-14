@@ -31,10 +31,10 @@
         <activity android:name=".MainActivity"></activity>
 
         <!-- 로그인 페이지 -->
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login.Login"></activity>
 
         <!-- 회원가입 페이지 -->
-        <activity android:name=".Join"></activity>
+        <activity android:name=".Login.Join"></activity>
 
     </application>
 </manifest>
