@@ -23,7 +23,7 @@ public class Login extends AppCompatActivity {
 
     EditText id, pw;
     CheckBox Login_keep;
-    Button login_btn, join_btn;
+    Button login_btn, join_btn, in;
 
     private FirebaseAuth firebaseAuth;
 
@@ -41,6 +41,7 @@ public class Login extends AppCompatActivity {
         Login_keep = (CheckBox) findViewById(R.id.Login_keep);
         login_btn = (Button)findViewById(R.id.login_btn);
         join_btn = (Button)findViewById(R.id.join_btn);
+        in = (Button)findViewById(R.id.in);
 
         firebaseAuth =  FirebaseAuth.getInstance();
 
@@ -49,6 +50,15 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Join.class);
+                startActivity(intent);
+            }
+        });
+
+        // 메인 페이지로 이동
+        in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

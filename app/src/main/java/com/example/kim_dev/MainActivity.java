@@ -4,10 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.kim_dev.Login.Join;
+import com.example.kim_dev.Profile.Profile;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 drawerLayout.closeDrawers();
+            }
+        });
+
+        // 프로필 페이지
+        Button profile_btn = (Button) findViewById(R.id.profile_btn);
+        profile_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.closeDrawers();
+                Intent intent = new Intent(getApplicationContext(), Profile.class);
+                startActivity(intent);
             }
         });
 
