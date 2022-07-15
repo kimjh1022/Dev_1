@@ -2,7 +2,10 @@ package com.example.kim_dev.Login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,8 +56,78 @@ public class Join extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         //firebaseDatabase = FirebaseDatabase.getInstance().getReference();
 
-        //파이어베이스 user 로 접글
+        join_btn.setEnabled(false);
+        join_btn.setTextColor(Color.parseColor("#CDCDCD"));
+        u_name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(u_name.length() > 0 && id.length() > 0 && pw.length() > 0 && pw_ck.length() > 0){
+                    join_btn.setTextColor(Color.parseColor("#000000"));
+                    join_btn.setEnabled(true);
+                } else {
+                    join_btn.setTextColor(Color.parseColor("#CDCDCD"));
+                    join_btn.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        id.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(u_name.length() > 0 && id.length() > 0 && pw.length() > 0 && pw_ck.length() > 0){
+                    join_btn.setTextColor(Color.parseColor("#000000"));
+                    join_btn.setEnabled(true);
+                } else {
+                    join_btn.setTextColor(Color.parseColor("#CDCDCD"));
+                    join_btn.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        pw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(u_name.length() > 0 && id.length() > 0 && pw.length() > 0 && pw_ck.length() > 0){
+                    join_btn.setTextColor(Color.parseColor("#000000"));
+                    join_btn.setEnabled(true);
+                } else {
+                    join_btn.setTextColor(Color.parseColor("#CDCDCD"));
+                    join_btn.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        pw_ck.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(u_name.length() > 0 && id.length() > 0 && pw.length() > 0 && pw_ck.length() > 0){
+                    join_btn.setTextColor(Color.parseColor("#000000"));
+                    join_btn.setEnabled(true);
+                } else {
+                    join_btn.setTextColor(Color.parseColor("#CDCDCD"));
+                    join_btn.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
+        //파이어베이스 user 로 접근
         //가입버튼 클릭리스너   -->  firebase에 데이터를 저장한다.
         join_btn.setOnClickListener(new View.OnClickListener() {
 
@@ -99,6 +172,7 @@ public class Join extends AppCompatActivity {
                                 //가입이 이루어져을시 가입 화면을 빠져나감.
                                 Intent intent = new Intent(Join.this, MainActivity.class);
                                 startActivity(intent);
+                                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                                 finish();
                                 Toast.makeText(Join.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
 
@@ -117,6 +191,16 @@ public class Join extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // 뒤로가기
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+        finish();
+        super.onBackPressed();
     }
 }
 

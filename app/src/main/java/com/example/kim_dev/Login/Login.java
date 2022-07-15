@@ -1,7 +1,10 @@
 package com.example.kim_dev.Login;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -51,6 +54,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Join.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
 
@@ -60,10 +64,48 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
 
         // 메인 페이지로 이동
+        login_btn.setEnabled(false);
+        login_btn.setTextColor(Color.parseColor("#CDCDCD"));
+        id.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(id.length() > 0 && pw.length() > 0){
+                    login_btn.setTextColor(Color.parseColor("#000000"));
+                    login_btn.setEnabled(true);
+                } else {
+                    login_btn.setTextColor(Color.parseColor("#CDCDCD"));
+                    login_btn.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        pw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(id.length() > 0 && pw.length() > 0){
+                    login_btn.setTextColor(Color.parseColor("#000000"));
+                    login_btn.setEnabled(true);
+                } else {
+                    login_btn.setTextColor(Color.parseColor("#CDCDCD"));
+                    login_btn.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,12 +119,12 @@ public class Login extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Intent intent = new Intent(Login.this, MainActivity.class);
                                     startActivity(intent);
+                                    overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                                 } else {
                                     Toast.makeText(Login.this, "로그인 오류", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
             }
         });
     }

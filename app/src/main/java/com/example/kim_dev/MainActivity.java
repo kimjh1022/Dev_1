@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.kim_dev.Login.Join;
 import com.example.kim_dev.Profile.Profile;
@@ -52,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
         profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.closeDrawers();
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
 
@@ -80,6 +81,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDrawerStateChanged(int newState) {}
     };
+
+    // 첫 화면에서 뒤로가기 두번으로 앱 종료시키기 (onBackPressed)
+    private long time = 0;
+    @Override
+    public void onBackPressed(){
+        if(System.currentTimeMillis() - time >= 2000) {
+            time = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "한번더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+        else if(System.currentTimeMillis() - time < 2000) {
+            finishAffinity();
+            System.runFinalization();
+            System.exit(0);
+        }
+    }
 }
 
 
