@@ -39,5 +39,8 @@
         <!-- 프로필 페이지 -->
         <activity android:name=".Profile.Profile"></activity>
 
+        <!-- 시계 페이지 -->
+        <activity android:name=".Clock.Clock"></activity>
+
     </application>
 </manifest>

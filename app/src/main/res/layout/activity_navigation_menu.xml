@@ -40,10 +40,11 @@
         android:gravity="center"
         android:text="프로필" />
 
-    <TextView
+    <Button
+        android:id="@+id/clock_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="test2" />
+        android:text="시계" />
 
 </LinearLayout>

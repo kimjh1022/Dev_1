@@ -128,4 +128,19 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
+    // 첫 화면에서 뒤로가기 두번으로 앱 종료시키기 (onBackPressed)
+    private long time = 0;
+    @Override
+    public void onBackPressed(){
+        if(System.currentTimeMillis() - time >= 2000) {
+            time = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "한번더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+        else if(System.currentTimeMillis() - time < 2000) {
+            finishAffinity();
+            System.runFinalization();
+            System.exit(0);
+        }
+    }
 }
