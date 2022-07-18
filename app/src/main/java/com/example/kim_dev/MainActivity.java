@@ -2,23 +2,49 @@ package com.example.kim_dev;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import com.example.kim_dev.Login.Join;
 import com.example.kim_dev.Profile.Profile;
+import java.util.ArrayList;
+import java.util.List;
+
+import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private View drawerView;
+
+    //ViewPager
+    Activity activity;
+    Context context;
+    MainActivity_ViewPager_Adapter adapter;
+    ViewPager viewPager;
+    CircleIndicator indicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +55,26 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        //ViewPager
+        activity = new Activity();
+        context =getApplicationContext();
+        viewPager = findViewById(R.id.pager);
+        adapter = new MainActivity_ViewPager_Adapter(context);
+        viewPager.setAdapter(adapter);
+        indicator = findViewById(R.id.indicator);
+        indicator.setViewPager(viewPager);
+
+        // Navigation_Menu
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawer);
+
+        // 로그아웃
+        Button logout_btn = (Button) findViewById(R.id.logout_btn);
+        logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
         Button btn_open = (Button) findViewById(R.id.btn_open);
         btn_open.setOnClickListener(new View.OnClickListener() {
