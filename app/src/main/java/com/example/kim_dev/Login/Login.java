@@ -21,11 +21,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
     EditText id, pw;
-    CheckBox Login_keep;
     Button login_btn, join_btn, in;
 
     private FirebaseAuth firebaseAuth;
@@ -41,7 +41,6 @@ public class Login extends AppCompatActivity {
 
         id = (EditText)findViewById(R.id.id);
         pw = (EditText)findViewById(R.id.pw);
-        Login_keep = (CheckBox) findViewById(R.id.Login_keep);
         login_btn = (Button)findViewById(R.id.login_btn);
         join_btn = (Button)findViewById(R.id.join_btn);
         in = (Button)findViewById(R.id.in);
@@ -106,6 +105,16 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        // 로그인 유지
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+        } else {
+
+        }
+
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,7 +136,17 @@ public class Login extends AppCompatActivity {
                         });
             }
         });
+
     }
+
+    // 로그인 유지
+    @Override
+    public void onStart() {
+        super.onStart();
+        // 활동을 초기화할 때 사용자가 현재 로그인되어 있는지 확인합니다.
+        FirebaseUser currentUser = firebaseAuth.getInstance().getCurrentUser();
+    }
+
 
     // 첫 화면에서 뒤로가기 두번으로 앱 종료시키기 (onBackPressed)
     private long time = 0;

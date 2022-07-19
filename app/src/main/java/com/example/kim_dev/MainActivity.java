@@ -15,7 +15,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -32,7 +34,10 @@ import android.widget.Toast;
 import com.example.kim_dev.Calculator.Calculator;
 import com.example.kim_dev.Clock.Clock;
 import com.example.kim_dev.Dev_Project.Dev_Project;
+import com.example.kim_dev.Login.Login;
 import com.example.kim_dev.Profile.Profile;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +81,25 @@ public class MainActivity extends AppCompatActivity {
         Button logout_btn = (Button) findViewById(R.id.logout_btn);
         logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("로그아웃 하시겠습니까?")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which){
+                                signOut();
+                                //finishAffinity();
+                                Toast.makeText(MainActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), Login.class);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which){
+
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -162,6 +185,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDrawerStateChanged(int newState) {}
     };
+
+    // 로그아웃
+    private void signOut() {
+        FirebaseAuth.getInstance().signOut();
+    }
 
     // 첫 화면에서 뒤로가기 두번으로 앱 종료시키기 (onBackPressed)
     private long time = 0;
