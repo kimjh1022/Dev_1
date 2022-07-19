@@ -47,4 +47,10 @@
         android:gravity="center"
         android:text="시계" />
 
+    <Button
+        android:id="@+id/calculator_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="계산기" />
 </LinearLayout>

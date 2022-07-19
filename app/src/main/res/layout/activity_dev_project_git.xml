@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Dev_Project.Dev_Project_Git"
+    android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="https://github.com/kimjh1022/Dev_1.git"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/git_web_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="100dp"
+            android:gravity="center"
+            android:text="Git"
+            android:background="@drawable/box_01"
+            android:textSize="24sp"/>
+
+
+</LinearLayout>
+

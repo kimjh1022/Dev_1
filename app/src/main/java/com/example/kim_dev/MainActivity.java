@@ -29,7 +29,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.kim_dev.Calculator.Calculator;
 import com.example.kim_dev.Clock.Clock;
+import com.example.kim_dev.Dev_Project.Dev_Project;
 import com.example.kim_dev.Profile.Profile;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +96,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 개발 프로젝트 페이지
+        Button dev_project = (Button) findViewById(R.id.dev_project);
+        dev_project.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Dev_Project.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
         // 프로필 페이지
         Button profile_btn = (Button) findViewById(R.id.profile_btn);
         profile_btn.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +124,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Clock.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 계산기 페이지
+        Button calculator_btn = (Button) findViewById(R.id.calculator_btn);
+        calculator_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Calculator.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
@@ -153,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
             System.exit(0);
         }
     }
+
+
 }
 
 

@@ -81,7 +81,7 @@ public class Clock_Fragment_1 extends Fragment {
         View v = inflater.inflate(R.layout.activity_clock_f1, container, false);
 
         Date = (TextView) v.findViewById(R.id.Date);
-        Gre = (TextView) v.findViewById(R.id.Gre);
+        //Gre = (TextView) v.findViewById(R.id.Gre);
 
         handler = new ProgressHandler();
 
@@ -141,27 +141,27 @@ public class Clock_Fragment_1 extends Fragment {
             return null;
         }
 
-        @Override
-        protected void onPreExecute() {
-            cal = new GregorianCalendar();
-            timeGre = String.format("%d/%d/%d %d:%d:%d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1,
-                    cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
-            Gre.setText(timeGre);
-
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Integer integer) {
-            super.onPostExecute(integer);
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            Gre.setText(timeGre);
-
-            super.onProgressUpdate(values);
-        }
+//        @Override
+//        protected void onPreExecute() {
+//            cal = new GregorianCalendar();
+//            timeGre = String.format("%d/%d/%d %d:%d:%d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1,
+//                    cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
+//            Gre.setText(timeGre);
+//
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Integer integer) {
+//            super.onPostExecute(integer);
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(Integer... values) {
+//            Gre.setText(timeGre);
+//
+//            super.onProgressUpdate(values);
+//        }
     }
 }
 

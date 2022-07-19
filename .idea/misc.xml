@@ -21,15 +21,19 @@
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.2405" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/drawable/ic_baseline_stop_circle_24.xml" value="0.2405" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/drawable/vp_indicator.xml" value="0.278" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_calculator.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_calculator_splash.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_clock.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_clock_f1.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_clock_f2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_clock_f3.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_dev_project.xml" value="0.36102564102564105" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_dev_project_git.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_intro.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_join.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_logout.xml" value="0.365625" />
-        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_main_viewpager_item.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_navigation_menu.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_profile.xml" value="0.275" />
