@@ -1,26 +1,38 @@
 package com.example.kim_dev.Profile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kim_dev.MainActivity;
 import com.example.kim_dev.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class Profile extends AppCompatActivity {
 
-    //Firebase로 로그인한 사용자 정보 알기 위해
-    private FirebaseAuth mAuth;
-
-    //프로필 uri이용해 bitmap으로
-    Bitmap bitmap;
-
+    TextView u_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +43,12 @@ public class Profile extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        // (회원) 상단 아이디
+        u_id = (TextView) findViewById(R.id.u_id);
+        SharedPreferences sharedPreferences= getSharedPreferences("user", MODE_PRIVATE);
+        String inputText = sharedPreferences.getString("user_id","");
+        u_id.setText(inputText);
 
-        //Firebase 로그인한 사용자 정보
-        mAuth = FirebaseAuth.getInstance();
-        final FirebaseUser user = mAuth.getCurrentUser();
-
-        TextView email = findViewById(R.id.email);
-        email.setText(user.getDisplayName());
     }
 
     // 뒤로가기

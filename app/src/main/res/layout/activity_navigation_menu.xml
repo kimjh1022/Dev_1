@@ -41,6 +41,13 @@
         android:text="프로필" />
 
     <Button
+        android:id="@+id/license_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="자격증" />
+
+    <Button
         android:id="@+id/clock_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"

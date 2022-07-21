@@ -1,6 +1,7 @@
 package com.example.kim_dev.Login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -108,6 +109,12 @@ public class Login extends AppCompatActivity {
         // 로그인 유지
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
+            // (회원) 로그인한 해당 아이디 다른 페이지로 공유
+            SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+            SharedPreferences.Editor editor= sharedPreferences.edit();
+            editor.putString("user_id",user.getEmail());
+            editor.commit();
+
             Intent intent = new Intent(Login.this, MainActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
@@ -126,6 +133,12 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    // (회원) 로그인한 해당 아이디 다른 페이지로 공유
+                                    SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor= sharedPreferences.edit();
+                                    editor.putString("user_id",id.getText().toString());
+                                    editor.commit();
+
                                     Intent intent = new Intent(Login.this, MainActivity.class);
                                     startActivity(intent);
                                     overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);

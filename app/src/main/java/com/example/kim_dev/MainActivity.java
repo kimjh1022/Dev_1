@@ -19,6 +19,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,11 +30,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kim_dev.Calculator.Calculator;
 import com.example.kim_dev.Clock.Clock;
 import com.example.kim_dev.Dev_Project.Dev_Project;
+import com.example.kim_dev.License.License;
 import com.example.kim_dev.Login.Login;
 import com.example.kim_dev.Profile.Profile;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     CircleIndicator indicator;
 
+    TextView u_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         // 타이틀바 제거
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+        // (회원) 상단 아이디
+        u_id = (TextView) findViewById(R.id.u_id);
+        SharedPreferences sharedPreferences= getSharedPreferences("user", MODE_PRIVATE);
+        String inputText = sharedPreferences.getString("user_id","");
+        u_id.setText(inputText);
 
         //ViewPager
         activity = new Activity();
@@ -136,6 +147,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 자격증 페이지
+        Button license_btn = (Button) findViewById(R.id.license_btn);
+        license_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), License.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
