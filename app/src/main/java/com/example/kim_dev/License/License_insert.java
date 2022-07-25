@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-public class License_insert extends AppCompatActivity {
+public class License_insert extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     // 파이어베이스 데이터베이스 연동
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -35,7 +38,11 @@ public class License_insert extends AppCompatActivity {
     EditText l_name, l_num, l_org;
     Button insert, date_btn;
 
+    Spinner org_spinner;
+    String[] spinner_item;
+
     DatePickerDialog datePickerDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +65,9 @@ public class License_insert extends AppCompatActivity {
         l_org = (EditText) findViewById(R.id.l_org);
         insert = (Button) findViewById(R.id.insert);
         date_btn = (Button) findViewById(R.id.date_btn);
+        org_spinner = (Spinner) findViewById(R.id.org_spinner);
 
+        // 일자 선택
         date_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +90,14 @@ public class License_insert extends AppCompatActivity {
             }
         });
 
+        // 기관 선택 Spinner
+        org_spinner.setOnItemSelectedListener(this);
+        spinner_item = new String[]{"","한국산업인력공단","국사편찬위원회","한국정보통신자격협회"};
+        ArrayAdapter<String> Spinner_Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,spinner_item);
+        Spinner_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        org_spinner.setAdapter(Spinner_Adapter);
+
+        // 등록
         insert.setEnabled(false);
         insert.setTextColor(Color.parseColor("#CDCDCD"));
         l_name.addTextChangedListener(new TextWatcher() {
@@ -179,6 +196,19 @@ public class License_insert extends AppCompatActivity {
                         .show();
             }
         });
+    }
+
+    // 기관 선택 Spinner
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        l_org.setText(spinner_item[i]);
+        if (l_org.getText().toString().equals("선택하세요")) {
+            l_org.setText("");
+        }
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView){
+        l_org.setText("");
     }
 
     // 값을 파이어베이스 Realtime database로 넘김

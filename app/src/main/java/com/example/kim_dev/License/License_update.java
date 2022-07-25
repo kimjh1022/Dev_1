@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +32,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
 
-public class License_update extends AppCompatActivity {
+public class License_update extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     // 파이어베이스 데이터베이스 연동
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -42,6 +45,9 @@ public class License_update extends AppCompatActivity {
     String sKey;
 
     Button update, delete, date_btn;
+
+    Spinner org_spinner;
+    String[] spinner_item;
 
     DatePickerDialog datePickerDialog;
 
@@ -60,6 +66,7 @@ public class License_update extends AppCompatActivity {
         l_date = (TextView) findViewById(R.id.l_date);
         l_org = (EditText) findViewById(R.id.l_org);
         date_btn = (Button) findViewById(R.id.date_btn);
+        org_spinner = (Spinner) findViewById(R.id.org_spinner);
 
         // (회원) 상단 아이디
         u_id = (TextView) findViewById(R.id.u_id);
@@ -76,6 +83,7 @@ public class License_update extends AppCompatActivity {
         l_org.setText(intent.getStringExtra("l_org"));
         sKey = getIntent().getStringExtra("l_key");
 
+        // 일자 선택
         date_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +105,13 @@ public class License_update extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+        // 기관 선택 Spinner
+        org_spinner.setOnItemSelectedListener(this);
+        spinner_item = new String[]{l_org.getText().toString(),"한국산업인력공단","국사편찬위원회","한국정보통신자격협회"};
+        ArrayAdapter<String> Spinner_Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,spinner_item);
+        Spinner_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        org_spinner.setAdapter(Spinner_Adapter);
 
         update = (Button) findViewById(R.id.update);
         update.setOnClickListener(new View.OnClickListener() {
@@ -196,17 +211,33 @@ public class License_update extends AppCompatActivity {
         });
     }
 
+    // 기관 선택 Spinner
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        l_org.setText(spinner_item[i]);
+        if (l_org.getText().toString().equals("선택하세요")) {
+            l_org.setText("");
+        }
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView){
+        l_org.setText("");
+    }
+
+    // 업데이트
     public Task<Void> update(String key, HashMap<String, Object> hashMap) {
 
         return databaseReference.child("License").child(key).updateChildren(hashMap);
         //return databaseReference.child(key).updateChildren(hashMap);
     }
 
+    // 삭제
     public Task<Void> delete(String key) {
 
         return databaseReference.child("License").child(key).removeValue();
         //return databaseReference.child(key).updateChildren(hashMap);
     }
+
 
     // 뒤로가기
     @Override

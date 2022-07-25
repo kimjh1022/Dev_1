@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
@@ -84,8 +85,20 @@ public class License extends AppCompatActivity {
         l_recyclerview.setLayoutManager(layoutManager);
         arrayList = new ArrayList<License_data>();
 
+        // 리스트 역순 출력
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+        l_recyclerview.setLayoutManager(mLayoutManager);
+
+
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("License");
+        //databaseReference = database.getReference("License");
+
+        // 리스트 정렬
+        String date = "_l_date";
+        Query databaseReference = FirebaseDatabase.getInstance().getReference().child("License").orderByChild(date);
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -115,7 +128,12 @@ public class License extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 database = FirebaseDatabase.getInstance();
-                databaseReference = database.getReference("License");
+                //databaseReference = database.getReference("License");
+
+                // 리스트 정렬
+                String date = "_l_date";
+                Query databaseReference = FirebaseDatabase.getInstance().getReference().child("License").orderByChild(date);
+
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
