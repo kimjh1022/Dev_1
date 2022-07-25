@@ -1,6 +1,7 @@
 package com.example.kim_dev.License;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,15 +23,19 @@ import com.example.kim_dev.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class License_insert extends AppCompatActivity {
 
     // 파이어베이스 데이터베이스 연동
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = database.getReference();
 
-    TextView u_id;
-    EditText l_name, l_num, l_date, l_org;
-    Button insert;
+    TextView u_id, l_date;
+    EditText l_name, l_num, l_org;
+    Button insert, date_btn;
+
+    DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +54,32 @@ public class License_insert extends AppCompatActivity {
 
         l_name = (EditText) findViewById(R.id.l_name);
         l_num = (EditText) findViewById(R.id.l_num);
-        l_date = (EditText) findViewById(R.id.l_date);
+        l_date = (TextView) findViewById(R.id.l_date);
         l_org = (EditText) findViewById(R.id.l_org);
         insert = (Button) findViewById(R.id.insert);
+        date_btn = (Button) findViewById(R.id.date_btn);
+
+        date_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 오늘 날짜(년, 월, 일) 변수에 담기
+                Calendar calendar = Calendar.getInstance();
+                int l_Year =  calendar.get(Calendar.YEAR);
+                int l_Month =  calendar.get(Calendar.MONTH);
+                int l_Day =  calendar.get(Calendar.DAY_OF_MONTH);
+
+                datePickerDialog = new DatePickerDialog(License_insert.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        // 1월은 0부터 시작하기 때문에 +1을 해준다.
+                        month = month + 1;
+                        String date = year + "/" + month + "/" + day;
+                        l_date.setText(date);
+                    }
+                }, l_Year, l_Month, l_Day);
+                datePickerDialog.show();
+            }
+        });
 
         insert.setEnabled(false);
         insert.setTextColor(Color.parseColor("#CDCDCD"));
@@ -130,10 +159,15 @@ public class License_insert extends AppCompatActivity {
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which){
                                 add(u_id.getText().toString(), l_name.getText().toString(), l_num.getText().toString(), l_date.getText().toString(), l_org.getText().toString());
-                                l_name.setText("");
-                                l_num.setText("");
-                                l_date.setText("");
-                                l_org.setText("");
+//                                l_name.setText("");
+//                                l_num.setText("");
+//                                l_date.setText("");
+//                                l_org.setText("");
+
+                                Intent intent = new Intent(getApplicationContext(), License.class);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
                                 Toast.makeText(License_insert.this, "등록되었습니다.", Toast.LENGTH_SHORT).show();
                             }
                         })

@@ -62,7 +62,6 @@
         <activity android:name=".License.License"></activity>
         <activity android:name=".License.License_insert"></activity>
         <activity android:name=".License.License_update"></activity>
-        <activity android:name=".License.License_delete"></activity>
 
         <!-- 시계 페이지 -->
         <activity android:name=".Clock.Clock"></activity>
