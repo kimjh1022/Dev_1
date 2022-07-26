@@ -85,5 +85,14 @@
         <!-- 지도 페이지 -->
         <activity android:name=".Map.Map"></activity>
 
+        <!-- 날씨 페이지 -->
+        <activity android:name=".Weather.Weather"></activity>
+
+        <!-- 번역기 페이지 -->
+        <activity android:name=".Translation.Translation"></activity>
+
+        <!-- 로또 페이지 -->
+        <activity android:name=".Lotto.Lotto"></activity>
+
     </application>
 </manifest>

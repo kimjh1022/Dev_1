@@ -125,7 +125,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginLeft="10dp"
-                                android:text="보유 자격증"
+                                android:text="자격증"
                                 android:background="@drawable/box_01"/>
 
                             <Button

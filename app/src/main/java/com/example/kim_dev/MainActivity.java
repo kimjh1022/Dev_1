@@ -40,9 +40,12 @@ import com.example.kim_dev.Dev_Project.Dev_Project;
 import com.example.kim_dev.Drawing_Board.Drawing_board;
 import com.example.kim_dev.License.License;
 import com.example.kim_dev.Login.Login;
+import com.example.kim_dev.Lotto.Lotto;
 import com.example.kim_dev.Map.Map;
 import com.example.kim_dev.Memo.Memo;
 import com.example.kim_dev.Profile.Profile;
+import com.example.kim_dev.Translation.Translation;
+import com.example.kim_dev.Weather.Weather;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -211,12 +214,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 메모 페이지
+        // 지도 페이지
         Button map_btn = (Button) findViewById(R.id.map_btn);
         map_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Map.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 날씨 페이지
+        Button weather_btn = (Button) findViewById(R.id.weather_btn);
+        weather_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Weather.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 번역기 페이지
+        Button translation_btn = (Button) findViewById(R.id.translation_btn);
+        translation_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Translation.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 로또번호 조회 페이지
+        Button lotto_btn = (Button) findViewById(R.id.lotto_btn);
+        lotto_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Lotto.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
