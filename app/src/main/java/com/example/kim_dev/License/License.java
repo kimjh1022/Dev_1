@@ -61,7 +61,7 @@ public class License extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        l_key = (TextView) findViewById(R.id.l_key);
+        //l_key = (TextView) findViewById(R.id.l_key);
 
         // (회원) 상단 아이디
         u_id = (TextView) findViewById(R.id.u_id);

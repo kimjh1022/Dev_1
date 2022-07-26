@@ -45,11 +45,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:text="그림판"
                 android:textSize="20sp"
                 android:gravity="center" />
 
             <Button
-                android:id="@+id/profile_insert"
+                android:id="@+id/drawing_insert"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:textSize="20sp"
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/l_recyclerview"
+                android:id="@+id/d_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

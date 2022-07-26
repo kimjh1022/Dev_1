@@ -69,5 +69,9 @@
         <!-- 계산기 페이지 -->
         <activity android:name=".Calculator.Calculator"></activity>
 
+        <!-- 그림판 페이지 -->
+        <activity android:name=".Drawing_Board.Drawing_board"></activity>
+        <activity android:name=".Drawing_Board.Drawing_board_insert"></activity>
+
     </application>
 </manifest>

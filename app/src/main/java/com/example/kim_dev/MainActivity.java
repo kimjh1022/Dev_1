@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.example.kim_dev.Calculator.Calculator;
 import com.example.kim_dev.Clock.Clock;
 import com.example.kim_dev.Dev_Project.Dev_Project;
+import com.example.kim_dev.Drawing_Board.Drawing_board;
 import com.example.kim_dev.License.License;
 import com.example.kim_dev.Login.Login;
 import com.example.kim_dev.Profile.Profile;
@@ -180,6 +181,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Calculator.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 그림판 페이지
+        Button drawing_btn = (Button) findViewById(R.id.drawing_btn);
+        drawing_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Drawing_board.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }

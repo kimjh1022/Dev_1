@@ -60,4 +60,11 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:text="계산기" />
+
+    <Button
+        android:id="@+id/drawing_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="그림판" />
 </LinearLayout>
