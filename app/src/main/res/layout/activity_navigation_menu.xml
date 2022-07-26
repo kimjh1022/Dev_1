@@ -29,23 +29,7 @@
             android:background="@drawable/ic_baseline_menu_24"
             android:layout_weight="4"/>
 
-
-
     </LinearLayout>
-
-    <Button
-        android:id="@+id/profile_btn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="프로필" />
-
-    <Button
-        android:id="@+id/license_btn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="자격증" />
 
     <Button
         android:id="@+id/clock_btn"
@@ -67,4 +51,26 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:text="그림판" />
+
+    <Button
+        android:id="@+id/calendar_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="캘린더" />
+
+    <Button
+        android:id="@+id/memo_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="메모" />
+
+    <Button
+        android:id="@+id/map_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="지도" />
+
 </LinearLayout>

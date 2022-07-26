@@ -22,6 +22,10 @@
     <!-- 가속도계 센서 - 진동, 운동가속을 감지하는 기능 사용 (QR_code 페이지) -->
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/>
 
+    <!-- 저장 기능 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -71,7 +75,15 @@
 
         <!-- 그림판 페이지 -->
         <activity android:name=".Drawing_Board.Drawing_board"></activity>
-        <activity android:name=".Drawing_Board.Drawing_board_insert"></activity>
+
+        <!-- 달력 페이지 -->
+        <activity android:name=".Calendar.Calendar"></activity>
+
+        <!-- 메모 페이지 -->
+        <activity android:name=".Memo.Memo"></activity>
+
+        <!-- 지도 페이지 -->
+        <activity android:name=".Map.Map"></activity>
 
     </application>
 </manifest>

@@ -37,41 +37,13 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/drawing_new"
+            <TextView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:gravity="center"
+                android:text="지도"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_baseline_add_box_24"/>
-
-            <Button
-                android:id="@+id/drawing_color"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/drawing"/>
-
-            <Button
-                android:id="@+id/drawing_eraser"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/eraser"/>
-
-            <Button
-                android:id="@+id/drawing_save"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/save"/>
+                android:layout_marginRight="10dp" />
 
         </LinearLayout>
 

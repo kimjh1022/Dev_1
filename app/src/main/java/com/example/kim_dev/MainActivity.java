@@ -34,11 +34,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kim_dev.Calculator.Calculator;
+import com.example.kim_dev.Calendar.Calendar;
 import com.example.kim_dev.Clock.Clock;
 import com.example.kim_dev.Dev_Project.Dev_Project;
 import com.example.kim_dev.Drawing_Board.Drawing_board;
 import com.example.kim_dev.License.License;
 import com.example.kim_dev.Login.Login;
+import com.example.kim_dev.Map.Map;
+import com.example.kim_dev.Memo.Memo;
 import com.example.kim_dev.Profile.Profile;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -132,33 +135,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 개발 프로젝트 페이지
+        Button license = (Button) findViewById(R.id.license);
+        license.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), License.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 개발 프로젝트 페이지
         Button dev_project = (Button) findViewById(R.id.dev_project);
         dev_project.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Dev_Project.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-            }
-        });
-
-        // 프로필 페이지
-        Button profile_btn = (Button) findViewById(R.id.profile_btn);
-        profile_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Profile.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-            }
-        });
-
-        // 자격증 페이지
-        Button license_btn = (Button) findViewById(R.id.license_btn);
-        license_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), License.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
@@ -192,6 +184,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Drawing_board.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 달력 페이지
+        Button calendar_btn = (Button) findViewById(R.id.calendar_btn);
+        calendar_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Calendar.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 메모 페이지
+        Button memo_btn = (Button) findViewById(R.id.memo_btn);
+        memo_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Memo.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
+
+        // 메모 페이지
+        Button map_btn = (Button) findViewById(R.id.map_btn);
+        map_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Map.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
