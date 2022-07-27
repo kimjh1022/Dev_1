@@ -1,54 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
-    tools:context=".MainActivity"
-    android:background="#FFFFFF"
-    android:orientation="horizontal">
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 한국어 -> 영어"
+        android:textSize="18dp"
+        android:id="@+id/k_e"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="34dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <EditText
+        android:id="@+id/k_e_source"
+        android:scrollbars="vertical"
+        android:hint="번역할 원본을 입력해 주세요."
+        android:gravity="top"
+        android:background="#7CC16C"
+        android:layout_width="344dp"
+        android:layout_height="130dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/k_e"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.481" />
+
+    <TextView
+        android:id="@+id/k_e_result"
+        android:scrollbars="vertical"
+        android:layout_width="341dp"
+        android:layout_height="121dp"
+        android:textColor="#000"
+        android:background="#D1836B"
+        android:textSize="18dp"
+        android:hint="Result"
+
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/k_e_source"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintHorizontal_bias="0.485"
+        tools:layout_editor_absoluteX="13dp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/k_e_result"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal">
+        <Button
+            android:id="@+id/e_k_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="영어를 한글로" />
 
-            <TextView
-                android:id="@+id/u_id"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text=""
-                android:textSize="20sp"
-                android:gravity="center"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="번역기"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/k_e_translate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="한영 번역 실행" />
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="영어 -> 한국어"
+        android:textSize="18dp"
+        android:id="@+id/e_k"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="34dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <include layout = "@layout/activity_navigation_menu"/>
-</androidx.drawerlayout.widget.DrawerLayout>
+    <EditText
+        android:id="@+id/e_k_source"
+        android:scrollbars="vertical"
+        android:hint="번역할 원본을 입력해 주세요."
+        android:gravity="top"
+        android:background="#f4f5ba"
+        android:layout_width="344dp"
+        android:layout_height="130dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/e_k"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.481" />
+
+    <TextView
+        android:id="@+id/e_k_result"
+        android:scrollbars="vertical"
+        android:layout_width="341dp"
+        android:layout_height="121dp"
+        android:textColor="#000"
+        android:background="#cee6ff"
+        android:textSize="18dp"
+        android:hint="Result"
+
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/e_k_source"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintHorizontal_bias="0.485"
+        tools:layout_editor_absoluteX="13dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/e_k_result"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <Button
+            android:id="@+id/k_e_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="한글을 영어로" />
+
+        <Button
+            android:id="@+id/e_k_translate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="영한 번역 실행" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,68 +40,70 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <Button
-            android:id="@+id/clock_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="시계" />
+            <Button
+                android:id="@+id/clock_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="시계" />
 
-        <Button
-            android:id="@+id/calculator_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="계산기" />
+            <Button
+                android:id="@+id/calculator_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="계산기" />
 
-        <Button
-            android:id="@+id/drawing_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="그림판" />
+            <Button
+                android:id="@+id/calendar_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="캘린더" />
 
-        <Button
-            android:id="@+id/calendar_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="캘린더" />
+            <Button
+                android:id="@+id/translation_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="번역기" />
 
-        <Button
-            android:id="@+id/memo_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="메모" />
+            <Button
+                android:id="@+id/lotto_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="로또번호 조회" />
 
-        <Button
-            android:id="@+id/map_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="지도" />
+            <Button
+                android:id="@+id/drawing_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="그림판" />
 
-        <Button
-            android:id="@+id/weather_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="날씨" />
+            <Button
+                android:id="@+id/memo_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="메모" />
 
-        <Button
-            android:id="@+id/translation_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="번역기" />
+            <Button
+                android:id="@+id/map_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="지도" />
 
-        <Button
-            android:id="@+id/lotto_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="로또번호 조회" />
+            <Button
+                android:id="@+id/weather_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="날씨" />
+
+
 
         </LinearLayout>
 
