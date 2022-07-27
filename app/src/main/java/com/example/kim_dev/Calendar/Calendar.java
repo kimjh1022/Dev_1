@@ -1,25 +1,36 @@
 package com.example.kim_dev.Calendar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kim_dev.MainActivity;
 import com.example.kim_dev.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 public class Calendar extends AppCompatActivity {
 
-    // 파이어베이스 데이터베이스 연동
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = database.getReference();
-
-    TextView u_id;
+    public String readDay = null;
+    public String str = null;
+    public CalendarView calendarView;
+    public Button cha_Btn, del_Btn, save_Btn;
+    public TextView diaryTextView, textView2, textView3;
+    public EditText contextEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +41,150 @@ public class Calendar extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        // (회원) 상단 아이디
-        u_id = (TextView) findViewById(R.id.u_id);
-        SharedPreferences sharedPreferences= getSharedPreferences("user", MODE_PRIVATE);
-        String inputText = sharedPreferences.getString("user_id","");
-        u_id.setText(inputText);
+        calendarView = findViewById(R.id.calendarView);
+        diaryTextView = findViewById(R.id.diaryTextView);
+        save_Btn = findViewById(R.id.save_Btn);
+        del_Btn = findViewById(R.id.del_Btn);
+        cha_Btn = findViewById(R.id.cha_Btn);
+        textView2 = findViewById(R.id.textView2);
+        textView3 = findViewById(R.id.textView3);
+        contextEditText = findViewById(R.id.contextEditText);
 
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
+        {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth)
+            {
+                diaryTextView.setVisibility(View.VISIBLE);
+                save_Btn.setVisibility(View.VISIBLE);
+                contextEditText.setVisibility(View.VISIBLE);
+                textView2.setVisibility(View.INVISIBLE);
+                cha_Btn.setVisibility(View.INVISIBLE);
+                del_Btn.setVisibility(View.INVISIBLE);
+                diaryTextView.setText(String.format("%d / %d / %d", year, month + 1, dayOfMonth));
+                contextEditText.setText("");
+                checkDay(year, month, dayOfMonth);
+            }
+        });
+        save_Btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                saveDiary(readDay);
+                str = contextEditText.getText().toString();
+                textView2.setText(str);
+                save_Btn.setVisibility(View.INVISIBLE);
+                cha_Btn.setVisibility(View.VISIBLE);
+                del_Btn.setVisibility(View.VISIBLE);
+                contextEditText.setVisibility(View.INVISIBLE);
+                textView2.setVisibility(View.VISIBLE);
+
+            }
+        });
+    }
+
+    public void checkDay(int cYear, int cMonth, int cDay)
+    {
+        readDay = "" + cYear + "-" + (cMonth + 1) + "" + "-" + cDay + ".txt";
+        FileInputStream fis;
+
+        try
+        {
+            fis = openFileInput(readDay);
+
+            byte[] fileData = new byte[fis.available()];
+            fis.read(fileData);
+            fis.close();
+
+            str = new String(fileData);
+
+            contextEditText.setVisibility(View.INVISIBLE);
+            textView2.setVisibility(View.VISIBLE);
+            textView2.setText(str);
+
+            save_Btn.setVisibility(View.INVISIBLE);
+            cha_Btn.setVisibility(View.VISIBLE);
+            del_Btn.setVisibility(View.VISIBLE);
+
+            cha_Btn.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    contextEditText.setVisibility(View.VISIBLE);
+                    textView2.setVisibility(View.INVISIBLE);
+                    contextEditText.setText(str);
+
+                    save_Btn.setVisibility(View.VISIBLE);
+                    cha_Btn.setVisibility(View.INVISIBLE);
+                    del_Btn.setVisibility(View.INVISIBLE);
+                    textView2.setText(contextEditText.getText());
+                }
+
+            });
+            del_Btn.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    textView2.setVisibility(View.INVISIBLE);
+                    contextEditText.setText("");
+                    contextEditText.setVisibility(View.VISIBLE);
+                    save_Btn.setVisibility(View.VISIBLE);
+                    cha_Btn.setVisibility(View.INVISIBLE);
+                    del_Btn.setVisibility(View.INVISIBLE);
+                    removeDiary(readDay);
+                }
+            });
+            if (textView2.getText().length() == 0)
+            {
+                textView2.setVisibility(View.INVISIBLE);
+                diaryTextView.setVisibility(View.VISIBLE);
+                save_Btn.setVisibility(View.VISIBLE);
+                cha_Btn.setVisibility(View.INVISIBLE);
+                del_Btn.setVisibility(View.INVISIBLE);
+                contextEditText.setVisibility(View.VISIBLE);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressLint("WrongConstant")
+    public void removeDiary(String readDay)
+    {
+        FileOutputStream fos;
+        try
+        {
+            fos = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS);
+            String content = "";
+            fos.write((content).getBytes());
+            fos.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressLint("WrongConstant")
+    public void saveDiary(String readDay)
+    {
+        FileOutputStream fos;
+        try
+        {
+            fos = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS);
+            String content = contextEditText.getText().toString();
+            fos.write((content).getBytes());
+            fos.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     // 뒤로가기
@@ -48,4 +197,25 @@ public class Calendar extends AppCompatActivity {
         super.onBackPressed();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
