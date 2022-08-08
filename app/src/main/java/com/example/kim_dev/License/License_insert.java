@@ -172,7 +172,7 @@ public class License_insert extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(License_insert.this)
-                        .setMessage("입력 하시겠습니까?")
+                        .setMessage("등록 하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which){
                                 add(u_id.getText().toString(), l_name.getText().toString(), l_num.getText().toString(), l_date.getText().toString(), l_org.getText().toString());

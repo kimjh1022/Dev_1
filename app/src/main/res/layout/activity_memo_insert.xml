@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
+    tools:context=".MainActivity"
     android:background="#FFFFFF"
     android:orientation="horizontal">
 
@@ -31,43 +32,78 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:orientation="horizontal">
 
             <TextView
-
+                android:id="@+id/m_day"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:text="날짜"
                 android:textSize="20sp"
-                android:gravity="center" />
+                android:gravity="center"/>
 
             <Button
-                android:id="@+id/m_insert"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:background="@drawable/ic_baseline_add_box_24"/>
+                android:id="@+id/m_insert_btn"
+                android:text="저장"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_weight="3.5" />
 
         </LinearLayout>
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/m_recyclerview"
+            <EditText
+                android:id="@+id/m_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="제목"
+                android:textSize="20sp" />
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/m_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:hint="내용을 입력하세요."
+                    android:inputType="textMultiLine"
+                    android:textSize="20sp">
+
+
+                </EditText>
+
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 

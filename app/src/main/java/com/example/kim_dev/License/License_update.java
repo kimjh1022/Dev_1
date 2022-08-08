@@ -5,7 +5,10 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -114,8 +117,77 @@ public class License_update extends AppCompatActivity implements AdapterView.OnI
         org_spinner.setAdapter(Spinner_Adapter);
 
         update = (Button) findViewById(R.id.update);
+        update.setEnabled(false);
+        update.setTextColor(Color.parseColor("#CDCDCD"));
+        l_name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(l_name.length() > 0 && l_num.length() > 0 && l_date.length() > 0 && l_org.length() > 0){
+                    update.setTextColor(Color.parseColor("#000000"));
+                    update.setEnabled(true);
+                } else {
+                    update.setTextColor(Color.parseColor("#CDCDCD"));
+                    update.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        l_num.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(l_name.length() > 0 && l_num.length() > 0 && l_date.length() > 0 && l_org.length() > 0){
+                    update.setTextColor(Color.parseColor("#000000"));
+                    update.setEnabled(true);
+                } else {
+                    update.setTextColor(Color.parseColor("#CDCDCD"));
+                    update.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        l_date.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(l_name.length() > 0 && l_num.length() > 0 && l_date.length() > 0 && l_org.length() > 0){
+                    update.setTextColor(Color.parseColor("#000000"));
+                    update.setEnabled(true);
+                } else {
+                    update.setTextColor(Color.parseColor("#CDCDCD"));
+                    update.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        l_org.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(l_name.length() > 0 && l_num.length() > 0 && l_date.length() > 0 && l_org.length() > 0){
+                    update.setTextColor(Color.parseColor("#000000"));
+                    update.setEnabled(true);
+                } else {
+                    update.setTextColor(Color.parseColor("#CDCDCD"));
+                    update.setEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
         update.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
 

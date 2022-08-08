@@ -35,6 +35,7 @@ public class Drawing_board extends AppCompatActivity {
     TextView u_id;
     Button drawing_new, drawing_color, drawing_eraser, drawing_save;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,12 @@ public class Drawing_board extends AppCompatActivity {
         drawing_eraser = (Button) findViewById(R.id.drawing_eraser);
         drawing_save = (Button) findViewById(R.id.drawing_save);
 
+        drawing_color.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     // 뒤로가기
