@@ -104,6 +104,13 @@
                 android:text="날씨" />
 
             <Button
+                android:id="@+id/cocktail_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="칵테일" />
+
+            <Button
                 android:id="@+id/image_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

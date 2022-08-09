@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.example.kim_dev.Calculator.Calculator;
 import com.example.kim_dev.Calendar.Calendar;
 import com.example.kim_dev.Clock.Clock;
+import com.example.kim_dev.Cocktail.Cocktail;
 import com.example.kim_dev.Dev_Project.Dev_Project;
 import com.example.kim_dev.Drawing_Board.Drawing_board;
 import com.example.kim_dev.License.License;
@@ -259,7 +260,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 칵테일
+        Button cocktail_btn = (Button) findViewById(R.id.cocktail_btn);
+        cocktail_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Cocktail.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
 
+        // 이미지 업로드
         Button image_btn = (Button) findViewById(R.id.image_btn);
         image_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -312,8 +324,6 @@ public class MainActivity extends AppCompatActivity {
             System.exit(0);
         }
     }
-
-
 }
 
 

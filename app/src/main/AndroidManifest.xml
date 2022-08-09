@@ -103,9 +103,12 @@
 
         <!-- 칵테일 레시피 페이지 -->
         <activity android:name=".Cocktail.Cocktail"></activity>
+        <activity android:name=".Cocktail.Cocktail_insert"></activity>
+        <activity android:name=".Cocktail.Cocktail_update"></activity>
 
         <!-- 이미지 업로드 페이지 -->
         <activity android:name=".image.image"></activity>
-
+        <activity android:name=".image.image_insert"></activity>
+        <activity android:name=".image.image_update"></activity>
     </application>
 </manifest>

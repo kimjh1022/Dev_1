@@ -152,7 +152,7 @@ public class Memo_insert extends AppCompatActivity {
     // 뒤로가기
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), License.class);
+        Intent intent = new Intent(getApplicationContext(), Memo.class);
         startActivity(intent);
         overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
         finish();

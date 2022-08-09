@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
+    tools:context=".MainActivity"
     android:background="#FFFFFF"
     android:orientation="horizontal">
 
@@ -29,14 +30,6 @@
                 android:textSize="20sp"
                 android:gravity="center"/>
 
-            <TextView
-                android:id="@+id/m_key"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text=""
-                android:textSize="0sp"
-                android:gravity="center"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -47,57 +40,27 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/m_day"
+                android:id="@+id/c_day"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
                 android:text="날짜"
                 android:textSize="20sp"
                 android:gravity="center"/>
 
+            <TextView
+                android:id="@+id/c_key"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
             <Button
-                android:id="@+id/m_update_btn"
-                android:text="수정"
+                android:id="@+id/c_upload"
+                android:text="저장"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="7dp"
-                android:background="@drawable/box_01"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="2" />
-
-            <Button
-                android:id="@+id/m_delete_btn"
-                android:text="삭제"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/box_01"
-                android:layout_weight="2" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/m_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="제목"
-                android:textSize="20sp" />
+                android:layout_weight="3.5" />
 
         </LinearLayout>
 
@@ -113,22 +76,59 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/m_content"
+                    android:id="@+id/c_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:hint="제목"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/c_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/image_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="20sp"
+                        android:gravity="center"/>
+
+                    <Button
+                        android:id="@+id/c_choose"
+                        android:text="선택"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="3.5" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/c_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10"
                     android:hint="내용을 입력하세요."
                     android:inputType="textMultiLine"
-                    android:background="@null"
-                    android:textSize="20sp">
-
-
-                </EditText>
-
+                    android:textSize="20sp"/>
 
             </LinearLayout>
 
         </ScrollView>
+
+
 
     </LinearLayout>
 

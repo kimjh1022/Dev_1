@@ -31,13 +31,18 @@
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_clock_f2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_clock_f3.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_cocktail.xml" value="0.365625" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_cocktail_insert.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_cocktail_item.xml" value="0.365625" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_cocktail_update.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_connection.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_dev_project.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_dev_project_git.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_drawing_board.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_drawing_board_insert.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_image.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_image_insert.xml" value="0.365625" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_image_item.xml" value="0.365625" />
+        <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_image_update.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_intro.xml" value="0.365625" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_join.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82104/Desktop/Kim_Dev/app/src/main/res/layout/activity_license.xml" value="0.36666666666666664" />
