@@ -3,11 +3,13 @@ package com.example.kim_dev.Cocktail;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,18 +20,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.kim_dev.MainActivity;
 import com.example.kim_dev.R;
-import com.example.kim_dev.image.image;
-import com.example.kim_dev.image.image_data;
-import com.example.kim_dev.image.image_insert;
-import com.example.kim_dev.image.image_update;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,7 +174,7 @@ public class Cocktail extends AppCompatActivity {
             TextView c_name;
             TextView c_key;
             TextView image_name;
-
+            ImageView c_image;
 
             public View layout;
 
@@ -181,6 +185,7 @@ public class Cocktail extends AppCompatActivity {
                 this.c_name = itemView.findViewById(R.id.c_name);
                 this.c_key = itemView.findViewById(R.id.c_key);
                 this.image_name = itemView.findViewById(R.id.image_name);
+                this.c_image = itemView.findViewById(R.id.c_image);
             }
         }
 
@@ -203,9 +208,13 @@ public class Cocktail extends AppCompatActivity {
 
             final Cocktail_data classListItems = arrayList.get(position);
 
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            //storageReference.child("Cocktail/" + holder.image_name.getText().toString()).getDownloadUrl();
+
             holder.c_name.setText(arrayList.get(position).get_c_name());
             holder.c_key.setText(arrayList.get(position).get_c_key());
             holder.image_name.setText(arrayList.get(position).get_image_name());
+            Glide.with(holder.itemView).load(arrayList.get(position).get_c_image()).into(holder.c_image);
 
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override

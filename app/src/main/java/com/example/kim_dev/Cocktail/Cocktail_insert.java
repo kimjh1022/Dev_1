@@ -50,6 +50,7 @@ public class Cocktail_insert extends AppCompatActivity {
     private TextView u_id;
     private TextView c_day;
     private TextView image_name;
+    private TextView c_image_token;
     private EditText c_name;
     private EditText c_content;
     private Button c_choose;
@@ -72,6 +73,7 @@ public class Cocktail_insert extends AppCompatActivity {
 
         c_day = (TextView) findViewById(R.id.c_day);
         image_name = (TextView) findViewById(R.id.image_name);
+        c_image_token = (TextView) findViewById(R.id.c_image_token);
         c_name = (EditText) findViewById(R.id.c_name);
         c_content = (EditText) findViewById(R.id.c_content);
         c_choose = (Button) findViewById(R.id.c_choose);
@@ -88,6 +90,7 @@ public class Cocktail_insert extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat(format_yyyyMMdd, Locale.getDefault());
         String current = format.format(currentTime);
         c_day.setText(current);
+
 
         //버튼 클릭 이벤트
         c_choose.setOnClickListener(new View.OnClickListener() {
@@ -176,10 +179,6 @@ public class Cocktail_insert extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "업로드중...", Toast.LENGTH_SHORT).show();
                                 //업로드
                                 uploadFile();
-
-                                Intent intent = new Intent(getApplicationContext(), Cocktail.class);
-                                startActivity(intent);
-                                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -242,8 +241,32 @@ public class Cocktail_insert extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
-                            add(u_id.getText().toString(), c_day.getText().toString(), c_name.getText().toString(), image_name.getText().toString(), c_content.getText().toString());
-                            Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
+
+                            //c_image_token.setText(storageRef.child("Cocktail/" + image_name.getText().toString()).getDownloadUrl().toString());
+                            StorageReference storageRef = storage.getReferenceFromUrl("gs://kim-dev-d7e55.appspot.com").child("Cocktail/" + filename);
+                            storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    c_image_token.setText(uri.toString());
+                                    //Toast.makeText(getApplicationContext(), c_image_token.getText(), Toast.LENGTH_SHORT).show();
+                                    add(u_id.getText().toString(), c_day.getText().toString(), c_name.getText().toString(), image_name.getText().toString(), c_content.getText().toString(), c_image_token.getText().toString());
+                                    Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(getApplicationContext(), Cocktail.class);
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "다운로드 실패", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+
+
                         }
                     })
                     //실패시
@@ -270,9 +293,9 @@ public class Cocktail_insert extends AppCompatActivity {
     }
 
     // 값을 파이어베이스 Realtime database로 넘김
-    public void add(String id, String c_day, String c_name, String image_name, String c_content) {
+    public void add(String id, String c_day, String c_name, String image_name, String c_content, String c_image) {
         //Profile_data.java 에서 선언했던 함수
-        Cocktail_data Cocktail_data = new Cocktail_data(id, c_day, c_name, image_name, c_content);
+        Cocktail_data Cocktail_data = new Cocktail_data(id, c_day, c_name, image_name, c_content, c_image);
 
         //child 는 해당 키 위치로 이동하는 함수입니다.
         //키가 없는데 값을 지정한 경우 자동으로 생성합니다.

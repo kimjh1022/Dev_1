@@ -19,7 +19,7 @@
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <EditText
+    <com.example.kim_dev.Custom.ClearEditText
         android:id="@+id/k_e_source"
         android:scrollbars="vertical"
         android:hint="번역할 원본을 입력해 주세요."
@@ -98,7 +98,7 @@
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <EditText
+    <com.example.kim_dev.Custom.ClearEditText
         android:id="@+id/e_k_source"
         android:scrollbars="vertical"
         android:hint="번역할 원본을 입력해 주세요."
@@ -125,7 +125,6 @@
         android:background="#cee6ff"
         android:textSize="18dp"
         android:hint="Result"
-
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="16dp"

@@ -9,7 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText android:id="@+id/et"
+
+        <com.example.kim_dev.Custom.ClearEditText
+            android:id="@+id/et"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"

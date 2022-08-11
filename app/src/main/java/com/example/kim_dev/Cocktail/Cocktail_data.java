@@ -8,6 +8,7 @@ public class Cocktail_data {
     String image_name;
     String c_content;
     String c_key;
+    String c_image;
 
     public Cocktail_data() {
 
@@ -32,14 +33,18 @@ public class Cocktail_data {
     public String get_c_key() {return c_key;}
     public void set_c_key(String c_key) {this.c_key = c_key;}
 
+    public String get_c_image() {return c_image;}
+    public void set_c_image(String c_image) {this.c_image = c_image;}
+
 
     // 값을 추가할때 쓰는 함수.
-    public Cocktail_data(String id, String c_day, String c_name, String image_name, String c_content) {
+    public Cocktail_data(String id, String c_day, String c_name, String image_name, String c_content, String c_image) {
         this.id = id;
         this.c_day = c_day;
         this.c_name = c_name;
         this.image_name = image_name;
         this.c_content = c_content;
+        this.c_image = c_image;
     }
 }
 

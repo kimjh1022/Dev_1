@@ -39,7 +39,7 @@
                 android:background="@drawable/github" />
 
             <Button
-                android:id="@+id/profile_insert"
+                android:id="@+id/p_insert"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="7dp"
@@ -48,18 +48,17 @@
 
         </LinearLayout>
 
-        <ScrollView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/p_recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content" />
 
-            </LinearLayout>
-
-        </ScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 

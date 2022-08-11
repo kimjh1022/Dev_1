@@ -47,7 +47,6 @@ import com.example.kim_dev.Memo.Memo;
 import com.example.kim_dev.Profile.Profile;
 import com.example.kim_dev.Translation.Translation;
 import com.example.kim_dev.Weather.Weather;
-import com.example.kim_dev.image.image;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -266,17 +265,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Cocktail.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-            }
-        });
-
-        // 이미지 업로드
-        Button image_btn = (Button) findViewById(R.id.image_btn);
-        image_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), image.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }

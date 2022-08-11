@@ -113,6 +113,8 @@ public class Memo_update extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
+
+
             }
         });
         m_update_btn.setOnClickListener(new View.OnClickListener() {

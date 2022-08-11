@@ -82,7 +82,7 @@
                     android:textSize="16sp"
                     android:gravity="center"/>
 
-                <EditText
+                <com.example.kim_dev.Custom.ClearEditText
                     android:id="@+id/l_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -112,7 +112,7 @@
                     android:textSize="16sp"
                     android:gravity="center"/>
 
-                <EditText
+                <com.example.kim_dev.Custom.ClearEditText
                     android:id="@+id/l_num"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -177,7 +177,7 @@
                     android:textSize="16sp"
                     android:gravity="center"/>
 
-                <EditText
+                <com.example.kim_dev.Custom.ClearEditText
                     android:id="@+id/l_org"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

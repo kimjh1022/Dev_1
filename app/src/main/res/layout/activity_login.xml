@@ -9,14 +9,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="200dp"
         android:orientation="vertical"
         android:background="@drawable/box_01">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
@@ -25,12 +26,11 @@
             <Button
                 android:id="@+id/in"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="50dp"
                 android:gravity="center"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="로그인" >
-            </Button>
+                android:text="로그인"/>
 
         </LinearLayout>
 
@@ -43,23 +43,20 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:text="아이디" >
-            </TextView>
+                android:text="아이디" />
 
-            <EditText
+            <com.example.kim_dev.Custom.ClearEditText
                 android:id="@+id/id"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textSize="20sp"
+                android:layout_height="40dp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:layout_weight="1">
-
-            </EditText>
+                android:layout_weight="1"/>
 
 
         </LinearLayout>
@@ -72,24 +69,20 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:text="비밀번호" >
+                android:text="비밀번호" />
 
-            </TextView>
-
-            <EditText
+            <com.example.kim_dev.Custom.ClearEditText
                 android:id="@+id/pw"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textSize="20sp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
                 android:textColor="@color/black"
-                android:layout_weight="1">
-
-            </EditText>
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -104,7 +97,7 @@
             <Button
                 android:id="@+id/login_btn"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="로그인"
@@ -112,23 +105,20 @@
                 android:background="@drawable/box_01"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="20sp">
-
-            </Button>
+                android:textSize="14sp"/>
 
             <Button
                 android:id="@+id/join_btn"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:background="@drawable/box_01"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="회원가입" >
-            </Button>
+                android:text="회원가입"/>
 
         </LinearLayout>
 
