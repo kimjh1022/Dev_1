@@ -50,19 +50,19 @@
                 android:id="@+id/drawing_color"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/drawing"/>
+                android:background="@drawable/drawing"
+                android:gravity="center" />
 
             <Button
                 android:id="@+id/drawing_eraser"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/eraser"/>
+                android:background="@drawable/eraser"
+                android:gravity="center" />
 
             <Button
                 android:id="@+id/drawing_save"

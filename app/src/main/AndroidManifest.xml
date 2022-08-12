@@ -49,63 +49,63 @@
         </activity>
 
         <!-- 메인 페이지 -->
-        <activity android:name=".a_Connection.Connection_Main"></activity>
+        <activity android:name=".a_Connection.Connection_Main"/>
 
         <!-- 메인 페이지 -->
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"/>
 
         <!-- 로그인 페이지 -->
-        <activity android:name=".Login.Login"></activity>
+        <activity android:name=".Login.Login"/>
 
         <!-- 회원가입 페이지 -->
-        <activity android:name=".Login.Join"></activity>
+        <activity android:name=".Login.Join"/>
 
         <!-- 개발 프로젝트 페이지 -->
-        <activity android:name=".Dev_Project.Dev_Project"></activity>
-        <activity android:name=".Dev_Project.Dev_Project_insert"></activity>
-        <activity android:name=".Dev_Project.Dev_Project_Git"></activity>
+        <activity android:name=".Dev_Project.Dev_Project"/>
+        <activity android:name=".Dev_Project.Dev_Project_insert"/>
+        <activity android:name=".Dev_Project.Dev_Project_Git"/>
 
         <!-- 프로필 페이지 -->
-        <activity android:name=".Profile.Profile"></activity>
+        <activity android:name=".Profile.Profile"/>
 
         <!-- 자격증 페이지 -->
-        <activity android:name=".License.License"></activity>
-        <activity android:name=".License.License_insert"></activity>
-        <activity android:name=".License.License_update"></activity>
+        <activity android:name=".License.License"/>
+        <activity android:name=".License.License_insert"/>
+        <activity android:name=".License.License_update"/>
 
         <!-- 시계 페이지 -->
-        <activity android:name=".Clock.Clock"></activity>
+        <activity android:name=".Clock.Clock"/>
 
         <!-- 계산기 페이지 -->
-        <activity android:name=".Calculator.Calculator"></activity>
+        <activity android:name=".Calculator.Calculator"/>
 
         <!-- 그림판 페이지 -->
-        <activity android:name=".Drawing_Board.Drawing_board"></activity>
+        <activity android:name=".Drawing_Board.Drawing_board"/>
 
         <!-- 달력 페이지 -->
-        <activity android:name=".Calendar.Calendar"></activity>
+        <activity android:name=".Calendar.Calendar"/>
 
         <!-- 메모 페이지 -->
-        <activity android:name=".Memo.Memo"></activity>
-        <activity android:name=".Memo.Memo_insert"></activity>
-        <activity android:name=".Memo.Memo_update"></activity>
+        <activity android:name=".Memo.Memo"/>
+        <activity android:name=".Memo.Memo_insert"/>
+        <activity android:name=".Memo.Memo_update"/>
 
         <!-- 지도 페이지 -->
-        <activity android:name=".Map.Map"></activity>
+        <activity android:name=".Map.Map"/>
 
         <!-- 날씨 페이지 -->
-        <activity android:name=".Weather.Weather"></activity>
+        <activity android:name=".Weather.Weather"/>
 
         <!-- 번역기 페이지 -->
-        <activity android:name=".Translation.Translation"></activity>
+        <activity android:name=".Translation.Translation"/>
 
         <!-- 로또 페이지 -->
-        <activity android:name=".Lotto.Lotto"></activity>
+        <activity android:name=".Lotto.Lotto"/>
 
         <!-- 칵테일 레시피 페이지 -->
-        <activity android:name=".Cocktail.Cocktail"></activity>
-        <activity android:name=".Cocktail.Cocktail_insert"></activity>
-        <activity android:name=".Cocktail.Cocktail_update"></activity>
+        <activity android:name=".Cocktail.Cocktail"/>
+        <activity android:name=".Cocktail.Cocktail_insert"/>
+        <activity android:name=".Cocktail.Cocktail_update"/>
 
     </application>
 </manifest>

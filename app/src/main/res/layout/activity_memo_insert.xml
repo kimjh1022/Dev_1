@@ -66,7 +66,7 @@
             android:layout_marginRight="15dp"
             android:orientation="horizontal">
 
-            <com.example.kim_dev.Custom.ClearEditText
+            <com.example.kim_dev.a.Custom.ClearEditText
                 android:id="@+id/m_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -88,7 +88,7 @@
                 android:layout_marginRight="15dp"
                 android:orientation="vertical">
 
-                <com.example.kim_dev.Custom.ClearEditText
+                <com.example.kim_dev.a.Custom.ClearEditText
                     android:id="@+id/m_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

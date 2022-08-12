@@ -74,6 +74,7 @@ public class Dev_Project_insert extends AppCompatActivity {
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
                 activityResult.launch(galleryIntent);
+
             }
         });
 

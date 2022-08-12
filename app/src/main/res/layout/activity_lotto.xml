@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.example.kim_dev.Custom.ClearEditText
+        <com.example.kim_dev.a.Custom.ClearEditText
             android:id="@+id/et"
             android:layout_width="0dp"
             android:layout_weight="1"

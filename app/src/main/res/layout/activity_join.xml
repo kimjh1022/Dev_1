@@ -50,7 +50,7 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
 
-            <com.example.kim_dev.Custom.ClearEditText
+            <com.example.kim_dev.a.Custom.ClearEditText
                 android:id="@+id/u_name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -76,7 +76,7 @@
                 android:textColor="@color/black"
                 android:text="아이디" />
 
-            <com.example.kim_dev.Custom.ClearEditText
+            <com.example.kim_dev.a.Custom.ClearEditText
                 android:id="@+id/id"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -102,7 +102,7 @@
                 android:textColor="@color/black"
                 android:text="비밀번호"/>
 
-            <com.example.kim_dev.Custom.ClearEditText
+            <com.example.kim_dev.a.Custom.ClearEditText
                 android:id="@+id/pw"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -128,7 +128,7 @@
                 android:textColor="@color/black"
                 android:text="비밀번호 확인"/>
 
-            <com.example.kim_dev.Custom.ClearEditText
+            <com.example.kim_dev.a.Custom.ClearEditText
                 android:id="@+id/pw_ck"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

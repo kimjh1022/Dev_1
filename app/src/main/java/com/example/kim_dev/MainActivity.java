@@ -182,17 +182,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 그림판 페이지
-        Button drawing_btn = (Button) findViewById(R.id.drawing_btn);
-        drawing_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Drawing_board.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-            }
-        });
-
         // 달력 페이지
         Button calendar_btn = (Button) findViewById(R.id.calendar_btn);
         calendar_btn.setOnClickListener(new View.OnClickListener() {
@@ -210,28 +199,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Memo.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-            }
-        });
-
-        // 지도 페이지
-        Button map_btn = (Button) findViewById(R.id.map_btn);
-        map_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Map.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-            }
-        });
-
-        // 날씨 페이지
-        Button weather_btn = (Button) findViewById(R.id.weather_btn);
-        weather_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Weather.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
@@ -269,6 +236,39 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
+
+        // 날씨 페이지
+//        Button weather_btn = (Button) findViewById(R.id.weather_btn);
+//        weather_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), Weather.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+//            }
+//        });
+
+        // 지도 페이지
+//        Button map_btn = (Button) findViewById(R.id.map_btn);
+//        map_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), Map.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+//            }
+//        });
+
+        // 그림판 페이지
+//        Button drawing_btn = (Button) findViewById(R.id.drawing_btn);
+//        drawing_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), Drawing_board.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+//            }
+//        });
 
         drawerLayout.setDrawerListener(listener);
         drawerView.setOnTouchListener(new View.OnTouchListener() {

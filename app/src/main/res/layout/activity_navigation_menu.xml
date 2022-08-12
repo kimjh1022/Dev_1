@@ -89,26 +89,26 @@
                 android:gravity="center"
                 android:text="칵테일 레시피" />
 
-            <Button
-                android:id="@+id/drawing_btn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="그림판" />
+<!--            <Button-->
+<!--                android:id="@+id/drawing_btn"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="그림판" />-->
 
-            <Button
-                android:id="@+id/map_btn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="지도" />
+<!--            <Button-->
+<!--                android:id="@+id/map_btn"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="지도" />-->
 
-            <Button
-                android:id="@+id/weather_btn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="날씨" />
+<!--            <Button-->
+<!--                android:id="@+id/weather_btn"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="날씨" />-->
 
         </LinearLayout>
 
