@@ -157,7 +157,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:gravity="center"
-                    android:background="@drawable/calendar"/>
+                    android:background="@drawable/ic_baseline_edit_calendar_24"/>
 
             </LinearLayout>
 

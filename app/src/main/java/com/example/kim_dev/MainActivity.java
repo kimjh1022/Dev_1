@@ -238,15 +238,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 날씨 페이지
-//        Button weather_btn = (Button) findViewById(R.id.weather_btn);
-//        weather_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), Weather.class);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-//            }
-//        });
+        Button weather_btn = (Button) findViewById(R.id.weather_btn);
+        weather_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Weather.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
 
         // 지도 페이지
 //        Button map_btn = (Button) findViewById(R.id.map_btn);

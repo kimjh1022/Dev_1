@@ -1,84 +1,268 @@
 package com.example.kim_dev.Weather;
 
 
-import static com.example.kim_dev.Weather.TransLocalPoint.TO_GRID;
-
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.kim_dev.MainActivity;
-import com.example.kim_dev.Weather.Weather;
-
 import com.example.kim_dev.R;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Weather extends AppCompatActivity{
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
-    private TextView tv_outPut;
+public class Weather extends AppCompatActivity implements View.OnClickListener{
 
-    private TransLocalPoint transLocalPoint;
     private GpsTracker gpsTracker;
-
-    JSONObject json = null;
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
-    void checkRunTimePermission(){
-        //런타임 퍼미션 처리
-        int hasFineLocationPermission = ContextCompat.checkSelfPermission(Weather.this, Manifest.permission.ACCESS_FINE_LOCATION);
-        int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(Weather.this, Manifest.permission.ACCESS_COARSE_LOCATION);
+    private String x = "", y = "", address = "";
 
-        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED && hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
+    private String date = "", time = "";
+
+    TextView textview;
+    Button button;
+
+    long mNow;
+    Date mDate;
+
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat mFormat2 = new SimpleDateFormat("hh:mm:ss");
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_weather);
+
+        // 타이틀바 제거
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
+        //bind view
+        textview = (TextView) findViewById(R.id.textview);
+        button = (Button) findViewById(R.id.button);
+
+        gpsTracker = new GpsTracker(this);
+
+        double latitude = gpsTracker.getLatitude();
+        double longitude = gpsTracker.getLongitude();
+
+        address = getCurrentAddress(latitude, longitude);
+        String[] local = address.split(" ");
+        String localName = local[2];
+
+        readExcel(localName); //행정시 이름으로 격자값 구하기
+
+//        String weather = "";
+//        WeatherData wd = new WeatherData();
+//        try {
+//            // date와 time에 값을 넣어야함
+//            time = time.substring(0, time.indexOf(":"));
+//            date = date.replaceAll("-", "");
+//            // ex) date = "20210722", time = "0500"
+//            weather = wd.lookUpWeather(date, time, x, y);
+//        } catch (IOException e) {
+//            Log.i("THREE_ERROR1", e.getMessage());
+//        } catch (JSONException e) {
+//            Log.i("THREE_ERROR2", e.getMessage());
+//        }
+//        Log.i("현재날씨",weather);
+
+        if (!checkLocationServicesStatus()) {
+            showDialogForLocationServiceSetting();
         } else {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(Weather.this, REQUIRED_PERMISSIONS[0])) {
-                Toast.makeText(Weather.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
+            checkRunTimePermission();
+        }
 
-                ActivityCompat.requestPermissions(Weather.this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
+        Button ShowLocationButton = (Button) findViewById(R.id.button);
+        ShowLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                gpsTracker = new GpsTracker(Weather.this);
+
+                double latitude = gpsTracker.getLatitude();
+                double longitude = gpsTracker.getLongitude();
+
+                String address = getCurrentAddress(latitude, longitude);
+                textview.setText(address);
+
+                Toast.makeText(Weather.this, "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private String getTime(){
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        return mFormat.format(mDate);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button:
+                textview.setText(getTime());
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void readExcel(String localName) {
+        try {
+            InputStream is = getBaseContext().getResources().getAssets().open("local_name.xls");
+            Workbook wb = Workbook.getWorkbook(is);
+
+            if (wb != null) {
+                Sheet sheet = wb.getSheet(0);   // 시트 불러오기
+                if (sheet != null) {
+                    int colTotal = sheet.getColumns();    // 전체 컬럼
+                    int rowIndexStart = 1;                  // row 인덱스 시작
+                    int rowTotal = sheet.getColumn(colTotal - 1).length;
+                    for (int row = rowIndexStart; row < rowTotal; row++) {
+                        String contents = sheet.getCell(0, row).getContents();
+                        if (contents.contains(localName)) {
+                            x = sheet.getCell(1, row).getContents();
+                            y = sheet.getCell(2, row).getContents();
+                            row = rowTotal;
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            Log.i("READ_EXCEL1", e.getMessage());
+            e.printStackTrace();
+        } catch (BiffException e) {
+            Log.i("READ_EXCEL1", e.getMessage());
+            e.printStackTrace();
+        }
+        Log.i("격자값", "x = " + x + "  y = " + y);
+    }
+
+    /*
+     * ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
+     */
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode, @NonNull String[] permissions, @NonNull int[] grandResults) {
+        super.onRequestPermissionsResult(permsRequestCode, permissions, grandResults);
+        if (permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
+            boolean check_result = true;
+            // 모든 퍼미션을 허용했는지 체크합니다.
+            for (int result : grandResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    check_result = false;
+                    break;
+                }
+            }
+            if (check_result) {
+                //위치 값을 가져올 수 있음;
             } else {
-                ActivityCompat.requestPermissions(Weather.this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
+                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0]) || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
+                    Toast.makeText(Weather.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(Weather.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
 
+    void checkRunTimePermission() {
+        //런타임 퍼미션 처리
+        // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
+        int hasFineLocationPermission = ContextCompat.checkSelfPermission(Weather.this, Manifest.permission.ACCESS_FINE_LOCATION);
+        int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(Weather.this, Manifest.permission.ACCESS_COARSE_LOCATION);
+        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED && hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
+            // 2. 이미 퍼미션을 가지고 있다면
+            // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
+            // 3.  위치 값을 가져올 수 있음
+        } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
+            // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Weather.this, REQUIRED_PERMISSIONS[0])) {
+                // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
+                Toast.makeText(Weather.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
+                // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
+                ActivityCompat.requestPermissions(Weather.this, REQUIRED_PERMISSIONS,
+                        PERMISSIONS_REQUEST_CODE);
+            } else {
+                // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
+                // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
+                ActivityCompat.requestPermissions(Weather.this, REQUIRED_PERMISSIONS,
+                        PERMISSIONS_REQUEST_CODE);
+            }
+        }
+    }
+
+    public String getCurrentAddress(double latitude, double longitude) {
+        // 지오코더... GPS를 주소로 변환
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        List<Address> addresses;
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 7);
+        } catch (IOException ioException) {
+            // 네트워크 문제
+            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_SHORT).show();
+            return "지오코더 서비스 사용불가";
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_SHORT).show();
+            return "잘못된 GPS 좌표";
+        }
+        if (addresses == null || addresses.size() == 0) {
+            Toast.makeText(this, "주소 미발견", Toast.LENGTH_SHORT).show();
+            return "주소 미발견";
+        }
+        Address address = addresses.get(0);
+        return address.getAddressLine(0).toString()+"\n";
+    }
+
     //여기부터는 GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(Weather.this);
         builder.setTitle("위치 서비스 비활성화");
-        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다. 위치 설정을 수정하실래요?");
+        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
+                + "위치 설정을 수정하실래요?");
         builder.setCancelable(true);
         builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivityForResult(callGPSSettingIntent,GPS_ENABLE_REQUEST_CODE);
+                startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
             }
         });
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -106,112 +290,10 @@ public class Weather extends AppCompatActivity{
                 break;
         }
     }
+
     public boolean checkLocationServicesStatus() {
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather);
-
-        // 타이틀바 제거
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-
-        tv_outPut = (TextView) findViewById(R.id.tv_outPut);
-
-        // GPS 체크 로직
-        if (!checkLocationServicesStatus()) {
-            showDialogForLocationServiceSetting();
-        }else {
-            checkRunTimePermission();
-        }
-        gpsTracker = new GpsTracker(Weather.this);
-        double latitude = gpsTracker.getLatitude();
-        double longitude = gpsTracker.getLongitude();
-        Log.d("gps","위도는? "+latitude);
-        Log.d("gps","경도는? "+longitude);
-
-        transLocalPoint = new TransLocalPoint();
-        TransLocalPoint.LatXLngY tmp = transLocalPoint.convertGRID_GPS(TO_GRID, latitude, longitude);
-        Log.e(">>","x = " + tmp.x + ", y = " + tmp.y);
-
-        long mNow = System.currentTimeMillis();
-        Date mReDate = new Date(mNow);
-        SimpleDateFormat mformatYDM = new SimpleDateFormat("yyyyMMdd");
-        String formatYDM = mformatYDM.format(mReDate);
-        SimpleDateFormat mformatTime = new SimpleDateFormat("HH00");
-        String formatTime = String.valueOf(Integer.parseInt(mformatTime.format(mReDate))-100);
-        Log.d("date","현재 날짜? : " + formatYDM);
-        Log.d("time","한시간 전 시간 대? : " + formatTime);
-
-        // URL 설정.
-        String service_key = "MX4bOg2AMoRywdfsm%2Fq6738D2IC65aXI9Hyq5mLeij5HoSaDS0RSRskbumlvkaxSbEoLCeqX6yIA4jAAbCXrlw%3D%3D";
-        String num_of_rows = "10";
-        String page_no = "1";
-        String date_type = "JSON";
-        String base_date = formatYDM;
-        String base_time = formatTime;
-        String nx = String.format("%.0f",tmp.x);
-        String ny = String.format("%.0f",tmp.y);
-
-
-        String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?" +
-                "serviceKey="+service_key+
-                "&numOfRows="+num_of_rows+
-                "&pageNo="+page_no+
-                "&dataType="+date_type+
-                "&base_date="+base_date+
-                "&base_time="+base_time+
-                "&nx="+nx+
-                "&ny="+ny;
-
-        // AsyncTask를 통해 HttpURLConnection 수행.
-        NetworkTask networkTask = new NetworkTask(url, null);
-        networkTask.execute();
-    }
-
-    public class NetworkTask extends AsyncTask<Void, Void, String> {
-
-        private String url;
-        private ContentValues values;
-
-        public NetworkTask(String url, ContentValues values) {
-
-            this.url = url;
-            this.values = values;
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String result; // 요청 결과를 저장할 변수.
-            RequestHttpConnection requestHttpURLConnection = new RequestHttpConnection();
-            result = requestHttpURLConnection.request(url, values); // 해당 URL로 부터 결과물을 얻어온다.
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
-            tv_outPut.setText(s);
-            Log.d("onPostEx", "출력 값 : "+s);
-
-            try {
-                json = new JSONObject(s);
-                tv_outPut.setText(json.getString("response"));
-                Log.d("변환한 데이터 값", json.getString("response"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
     // 뒤로가기
@@ -224,4 +306,3 @@ public class Weather extends AppCompatActivity{
         super.onBackPressed();
     }
 }
-

@@ -52,7 +52,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/drawing"
+                android:background="@drawable/ic_baseline_draw_24"
                 android:gravity="center" />
 
             <Button
@@ -71,7 +71,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/save"/>
+                android:background="@drawable/ic_baseline_save_24"/>
 
         </LinearLayout>
 
